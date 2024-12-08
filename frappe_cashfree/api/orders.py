@@ -31,7 +31,7 @@ def create_order(**kwargs):
         },
         "order_id": kwargs.get("order_id"),
         "order_currency": kwargs["order_currency"],
-        "order_amount": kwargs["order_amount"]
+        "order_amount": kwargs["order_amount"],
         "order_meta":{
             "return_url": kwargs.get("return_url"),
         }

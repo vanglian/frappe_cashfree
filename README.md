@@ -1,6 +1,7 @@
 ### Frappe Cashfree
 
-Integration for Frappe with Cashfree Payment gateway
+Integration for Frappe with Cashfree Payment gateway. 
+This is a small integration solution for integrating Frappe with Cashfree. The dependencies of Python SDK of Cashfree has version clash with the dependencies of Frappe. Hence the need to write this app.
 
 ### Installation
 
@@ -30,4 +31,4 @@ Pre-commit is configured to use the following tools for checking and formatting 
 
 ### License
 
-mit
+MIT
