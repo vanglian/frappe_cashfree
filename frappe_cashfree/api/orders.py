@@ -53,3 +53,27 @@ def create_order(**kwargs):
     except Exception as e:
         frappe.log_error(f"An error occurred: {e}")
         return {"status_code": 500, "error": str(e)}
+    
+@frappe.whitelist(allow_guest=True)
+def check_order_status(order_id):
+    '''Check the status of a CashFree order'''
+    if order_id is None:
+        return {"status_code": "404", "response": "Missing mandatory field order_id"}
+
+    url = f"{base_url}/pg/orders/{order_id}"
+    
+    # Debug prints
+    print(f"URL: {url}")
+    print(f"Headers: {headers}")
+    
+    try:
+        api_response = requests.request("GET", url, headers=headers)
+        print(f"Response Status Code: {api_response.status_code}")
+        print(f"Response Text: {api_response.text}")
+        return {"status_code": api_response.status_code, "response": api_response.json()}
+    except requests.exceptions.HTTPError as http_err:
+        frappe.log_error(f"HTTP error occurred: {http_err}")
+        return {"status_code": api_response.status_code, "error": str(http_err)}
+    except Exception as e:
+        frappe.log_error(f"An error occurred: {e}")
+        return {"status_code": 500, "error": str(e)}
