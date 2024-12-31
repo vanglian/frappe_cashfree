@@ -6,8 +6,10 @@
  "engine": "InnoDB",
  "field_order": [
   "appid",
+  "base_url",
+  "column_break_yzvr",
   "secret_key",
-  "base_url"
+  "environment"
  ],
  "fields": [
   {
@@ -32,12 +34,23 @@
    "label": "Base URL",
    "placeholder": "https://sandbox.cashfree.com",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yzvr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "environment",
+   "fieldtype": "Select",
+   "label": "Environment Type",
+   "options": "\nsandbox\nproduction",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-06 20:09:25.837669",
+ "modified": "2025-01-01 02:34:37.633917",
  "modified_by": "Administrator",
  "module": "Frappe Cashfree",
  "name": "CashFree Settings",

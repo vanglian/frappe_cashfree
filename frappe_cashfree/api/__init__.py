@@ -27,3 +27,16 @@ def authenticate():
     
     return AppID, secret_key, base_url
 
+# Function to return the Environment setting
+def get_environment():
+    '''Get the Environment setting'''
+    
+    cashfree_settings = frappe.get_doc("CashFree Settings")
+    if not cashfree_settings:
+        frappe.throw("CashFree Settings not found")
+    
+    environment = cashfree_settings.environment
+    if not environment:
+        frappe.throw("Environment is missing in CashFree Settings")
+    
+    return environment
