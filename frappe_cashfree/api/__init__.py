@@ -28,6 +28,7 @@ def authenticate():
     return AppID, secret_key, base_url
 
 # Function to return the Environment setting
+@frappe.whitelist(allow_guest=True)
 def get_environment():
     '''Get the Environment setting'''
     
