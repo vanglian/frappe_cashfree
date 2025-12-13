@@ -27,6 +27,7 @@
    "reqd": 1
   },
   {
+   "default": "https://sandbox.cashfree.com",
    "description": "Put the URL without the trailing '/'",
    "fieldname": "base_url",
    "fieldtype": "Data",
