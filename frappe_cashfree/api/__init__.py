@@ -1,5 +1,4 @@
 import frappe
-from frappe.utils.password import get_decrypted_password
 
 def authenticate():
     '''Authenticate with CashFree API'''
@@ -12,7 +11,8 @@ def authenticate():
     if not AppID:
         frappe.throw("AppID is missing in CashFree Settings")
     
-    secret_key = get_decrypted_password('CashFree Settings', cashfree_settings.name, 'secret_key')
+    # In this bench, secret_key is stored as a plain Data field (not Password)
+    secret_key = (getattr(cashfree_settings, "secret_key", None) or "").strip()
     if not secret_key:
         frappe.throw("Secret Key is missing in CashFree Settings")
     
