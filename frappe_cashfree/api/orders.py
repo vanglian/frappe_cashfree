@@ -1,6 +1,8 @@
+import json
+
 import frappe
 import requests
-import json
+
 from frappe_cashfree.api import authenticate
 
 AppID, secret_key, base_url = authenticate()
@@ -36,12 +38,12 @@ def create_order(**kwargs):
             "return_url": kwargs.get("return_url"),
         }
     })
-    
+
     # Debug prints
     print(f"URL: {url}")
     print(f"Headers: {headers}")
     print(f"Payload: {payload}")
-    
+
     try:
         api_response = requests.request("POST", url, headers=headers, data=payload)
         print(f"Response Status Code: {api_response.status_code}")
@@ -53,7 +55,7 @@ def create_order(**kwargs):
     except Exception as e:
         frappe.log_error(f"An error occurred: {e}")
         return {"status_code": 500, "error": str(e)}
-    
+
 @frappe.whitelist(allow_guest=True)
 def check_order_status(order_id):
     '''Check the status of a CashFree order'''
@@ -61,11 +63,11 @@ def check_order_status(order_id):
         return {"status_code": "404", "response": "Missing mandatory field order_id"}
 
     url = f"{base_url}/pg/orders/{order_id}"
-    
+
     # Debug prints
     print(f"URL: {url}")
     print(f"Headers: {headers}")
-    
+
     try:
         api_response = requests.request("GET", url, headers=headers)
         print(f"Response Status Code: {api_response.status_code}")
